@@ -82,7 +82,7 @@ public class EventosController {
 		return "redirect:/eventos/{idEvento}";
 	}
 	
-	@getmapping("/{id/remover}")
+	@GetMapping("/{id/remover}")
 	public String apagarEvento(@PathVariable Long id);{
 		
 		Optional<Evento> opt = er.findById(id);
@@ -101,4 +101,17 @@ public class EventosController {
 		return "redirect:/eventos";
 	}
 	
+	@GetMapping("/{idEvento}/convidados/{idConvidado}/remover")
+	public String apagarEvento(@PathVariable Long idEvento, @PathVariable Long idConvidado);{
+	Optional<Convidado> opt  cr.findById(idConvidado);
+	
+	if(!opt.isEmpty()) {
+		Convidado convidado = opt.get();
+		cr.delete(convidado);
+		
+	}
+	
+	return "redirect:/eventos/{idEvento}";
+	
+}
 }
